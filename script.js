@@ -18,10 +18,8 @@ function getHumanChoice() {
   return choice;
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
 function playGame() {
+
 
   let humanScore = 0;
   let computerScore = 0;
@@ -29,7 +27,7 @@ function playGame() {
   function playRound(humanChoice, computerChoice) {
     if (humanChoice.toLowerCase() === "rock" && computerChoice === "scissors") {
       humanScore += 1;
-      console.log("You win! Rock beats Paper!");
+      console.log("You win! Rock beats Scissors!");
     } else if (humanChoice.toLowerCase() === "rock" && computerChoice === "paper") {
       computerScore += 1;
       console.log("You lose! Paper beats Rock!");
@@ -54,9 +52,15 @@ function playGame() {
     }
   }
 
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
+  let round = 1;
+  while (round <= 5) {
+    console.log("Round:", round);
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    round += 1;
+    console.log("Human Score:", humanScore, "Computer Score:", computerScore);
+  }
 }
+
+playGame();
