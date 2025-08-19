@@ -43,7 +43,6 @@ let humanScore = 0;
 let computerScore = 0;
 const score = document.createElement("p");
 document.body.appendChild(score);
-score.append("Human: ", humanScore, " Computer: ", computerScore);
 
 const result = document.createElement("div");
 document.body.appendChild(result);
@@ -67,6 +66,16 @@ function playRound(humanChoice, computerChoice) {
     computerScore += 1;
     result.textContent = "You lose! Scissors beats Rock!";
   }
+  score.append("Human: ", humanScore, " Computer: ", computerScore);
+
+  function declareWinner() {
+    if (humanScore === 5) {
+      result.append("You WIN!");
+    } else if (computerScore === 5) {
+      result.append("You LOSE!");
+    }
+  }
+  declareWinner();
 
 }
 
