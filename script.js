@@ -13,6 +13,10 @@ function getComputerChoice() {
   return compchoice;
 }
 
+const theQuestion = document.createElement("h3");
+theQuestion.textContent = "Rock, Paper, or Scissors?";
+document.body.appendChild(theQuestion);
+
 const rock = document.createElement("button");
 const paper = document.createElement("button");
 const scissors = document.createElement("button");
@@ -41,32 +45,49 @@ function getHumanChoice() {
 
 let humanScore = 0;
 let computerScore = 0;
-const score = document.createElement("p");
-document.body.appendChild(score);
+// const score = document.createElement("p");
+// document.body.append(score);
 
 const result = document.createElement("div");
 document.body.appendChild(result);
 
 function playRound(humanChoice, computerChoice) {
+  if (humanScore === 5 || computerScore === 5) {
+    return;
+  }
+
+  let roundMessage = "";
+
   if (humanChoice === computerChoice) {
-    result.textContent = "DRAW!";
+    roundMessage = "DRAW!";
   } else if (humanChoice === "rock" && computerChoice === "paper") {
     computerScore += 1;
-    result.textContent = "You lose! Paper beats Rock!";
+    roundMessage = "You lose! Paper beats Rock!";
   } else if (humanChoice === "paper" && computerChoice === "rock") {
     humanScore += 1;
-    result.textContent = "You win! Paper beats Rock!";
+    roundMessage = "You win! Paper beats Rock!";
   } else if (humanChoice === "scissors" && computerChoice === "paper") {
     humanScore += 1;
-    result.textContent = "You win! Scissors beat Paper!";
+    roundMessage = "You win! Scissors beat Paper!";
   } else if (humanChoice === "scissors" && computerChoice === "rock") {
     computerScore += 1;
-    result.textContent = "You lose! Rock beats Scissor";
+    roundMessage = "You lose! Rock beats Scissor";
   } else if (humanChoice === "paper" && computerChoice === "scissors") {
     computerScore += 1;
-    result.textContent = "You lose! Scissors beats Rock!";
+    roundMessage = "You lose! Scissors beats Rock!";
   }
-  score.append("Human: ", humanScore, " Computer: ", computerScore);
+
+  while (result.firstChild) {
+    result.removeChild(result.firstChild);
+  }
+
+  const roundOutcome = document.createElement("p");
+  roundOutcome.textContent = roundMessage;
+  result.appendChild(roundOutcome);
+
+  const totalScore = document.createElement("p");
+  totalScore.textContent = `Human: ${humanScore} Computer: ${computerScore}`
+  result.appendChild(totalScore);
 
   function declareWinner() {
     if (humanScore === 5) {
