@@ -91,7 +91,7 @@ function playRound(humanChoice, computerChoice) {
 
   function declareWinner() {
     if (humanScore === 5) {
-      result.append("You WIN!");
+      result.append("You WIN! Goodbye Computer!");
     } else if (computerScore === 5) {
       result.append("You LOSE!");
     }
